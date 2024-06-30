@@ -14,14 +14,6 @@ game:GetService("UserInputService").InputEnded:Connect(function(input, GPE)
 	end
 end)
 
-for i, v in game.Workspace:GetDescendants() do
-	if v:IsA("Seat") and seat == false then
-		game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = v.CFrame
-		seat = true
-		break
-	end
-end
-
 while task.wait() do
 	for i, v in workspace:GetChildren() do
 		if v:IsA("Model") and v.Name == "Tree" and Activated == true then
@@ -35,7 +27,7 @@ while task.wait() do
 							if game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame == v.Character:WaitForChild("HumanoidRootPart").CFrame then
 								while task.wait() do
 										game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = v.Character:WaitForChild("HumanoidRootPart").CFrame
-										if not v:FindFirstChild("Is_Wanted") or v.Character:WaitForChild("Humanoid").Health ~= 0 then
+										if not v:FindFirstChild("Is_Wanted") then
 											loadstring(game:HttpGet("https://raw.githubusercontent.com/SteverGamer/ERLC/main/AutoArrest"))()
 									end
 									end
