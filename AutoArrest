@@ -1,0 +1,50 @@
+print("Semi-Auto Chop Shop Activated!")
+local Activated = false
+local spawns_folder = game.Workspace
+local skip = false
+local skip_int = 0
+local seat = false
+game:GetService("UserInputService").InputEnded:Connect(function(input, GPE)
+	if GPE then
+		return
+	end
+	if input.KeyCode == Enum.KeyCode.Minus then
+		Activated = not Activated
+		print(Activated)
+	end
+end)
+
+for i, v in game.Workspace:GetDescendants() do
+	if v:IsA("Seat") and seat == false then
+		game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = v.CFrame
+		seat = true
+		break
+	end
+end
+
+while task.wait() do
+	for i, v in workspace:GetChildren() do
+		if v:IsA("Model") and v.Name == "Tree" and Activated == true then
+			for i, v in v:GetDescendants() do
+				if v:IsA("BasePart") then
+					game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(v.CFrame.X, (v.CFrame.Y+100), v.CFrame.Z)
+					for i, v in game.Players:GetChildren() do
+						if v:FindFirstChild("Is_Wanted") and v.Character:FindFirstChild("HumanoidRootPart") and v.Character:WaitForChild("Humanoid").Health ~= 0 then
+							Activated = true
+							game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = v.Character:WaitForChild("HumanoidRootPart").CFrame
+							if game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame == v.Character:WaitForChild("HumanoidRootPart").CFrame then
+								while task.wait() do
+										game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = v.Character:WaitForChild("HumanoidRootPart").CFrame
+										if not v:FindFirstChild("Is_Wanted") or v.Character:WaitForChild("Humanoid").Health ~= 0 then
+											Activated = false
+									end
+									end
+									end
+								end
+							end
+						end
+					end
+					task.wait()
+				end
+			end
+		end
