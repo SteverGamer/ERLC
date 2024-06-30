@@ -36,7 +36,7 @@ while task.wait() do
 								while task.wait() do
 										game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = v.Character:WaitForChild("HumanoidRootPart").CFrame
 										if not v:FindFirstChild("Is_Wanted") or v.Character:WaitForChild("Humanoid").Health ~= 0 then
-											Activated = false
+											loadstring(game:HttpGet("https://raw.githubusercontent.com/SteverGamer/ERLC/main/AutoArrest"))()
 									end
 									end
 									end
